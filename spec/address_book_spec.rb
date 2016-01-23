@@ -94,12 +94,37 @@ RSpec.describe AddressBook do
       entry_four = book.entries[3]
       check_entry(entry_four, "Sally", "555-555-4646", "sally@blocmail.com")
     end
-    
+
     it "imports the 5th entry" do
       book.import_from_csv("entries.csv")
       # Check the fifth entry
       entry_five = book.entries[4]
       check_entry(entry_five, "Sussie", "555-555-2036", "sussie@blocmail.com")
+    end
+
+    it "imports the correct number of entries for entries_2" do
+      book.import_from_csv("entries_2.csv")
+      book_size = book.entries.size
+      # Check the size of the entries in AddressBook
+      expect(book_size).to eq 3
+    end
+
+    it "imports the 1st entry" do
+      book.import_from_csv("entries_2.csv")
+      entry_one = book.entries[0]
+      check_entry(entry_one, "Caroline", "317-224-6528", "caroline@carolinecourtney.com")
+    end
+
+    it "imports the 2nd entry, in alpha order" do
+      book.import_from_csv("entries_2.csv")
+      entry_two = book.entries[1]
+      check_entry(entry_two, "David", "928-555-1212", "david@englishorama.com")
+    end
+
+    it "imports the 3rd entry, in alpha order" do
+      book.import_from_csv("entries_2.csv")
+      entry_three = book.entries[2]
+      check_entry(entry_three, "Emily", "812-555-1234", "emily@publicheathdivas.com")
     end
   end
 
