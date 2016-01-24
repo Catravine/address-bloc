@@ -15,7 +15,8 @@ class MenuController
     puts "3 - Search for an entry"
     puts "4 - Import entries from a CSV"
     puts "5 - View Entry Number n"
-    puts "6 - Exit"
+    puts "6 - DESTROY ALL!"
+    puts "7 - Exit"
     print "Enter your selection: "
 
     selection = gets.to_i
@@ -42,6 +43,10 @@ class MenuController
       view_an_entry
       main_menu
     when 6
+      system "clear"
+      destroy_all
+      main_menu
+    when 7
       puts "Good-bye!"
 
       exit(0)
@@ -117,7 +122,7 @@ class MenuController
 
   def search_submenu(entry)
     puts "\nd - delete entry"
-    puts "e - eidt this entry"
+    puts "e - edit this entry"
     puts "m - return to main menu"
     selection = gets.chomp
 
@@ -188,7 +193,12 @@ class MenuController
 
   def delete_entry(entry)
     @address_book.entries.delete(entry)
-    puts "#{entry.name} has be deleted"
+    puts "#{entry.name} has been deleted"
+  end
+
+  def destroy_all
+    @address_book.entries = []
+    puts "ALL DESTROY3D!!"
   end
 
   def edit_entry(entry)
